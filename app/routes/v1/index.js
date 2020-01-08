@@ -1,13 +1,12 @@
 let express = require('express');
-// ルーティングするで
+// routing
 let router = express.Router();
 
-// routerにルーティングの動作を書いてく
-router.get('/', function (req, res) {
-    res.json({
-        message: "Hello,world"
-    });
-});
+// routing behavior
+router.use('/article', require('./article.js'));
+router.use('/user',require('./user.js'));
 
-//routerをモジュールとして扱う準備
+
+
+// Prepare to treat router as a module
 module.exports = router;

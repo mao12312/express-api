@@ -1,15 +1,17 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+// read library
+let express = require('express');
+let app = express();
+let bodyParser = require('body-parser');
 
+// setting body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
 
-var router = require('./routes/v1/');
+let router = require('./routes/v1/');
 app.use('/api/v1/', router);
 
-//サーバ起動
+// server start
 app.listen(port);
 console.log('listen on port ' + port);
