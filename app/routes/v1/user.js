@@ -24,5 +24,20 @@ router.post('/', function (req, res) {
     });
 });
 
+router.get('/', function (req, res) {
+    UserModel
+        .find()
+        .then(function (users) {
+            res.json(users);
+        });
+});
+
+router.get('/:id', function (req, res) {
+    let Userid = req.params.id;
+    UserModel
+        .findById(Userid, function (err, user) {
+            res.json(user);
+        });
+});
 //routerをモジュールとして扱う準備
 module.exports = router;
