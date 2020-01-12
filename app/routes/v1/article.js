@@ -33,14 +33,23 @@ router.get('/', function (req, res) {
         });
 });
 
-router.get('/:id',function(req,res){
+router.get('/:id', function (req, res) {
     let Articleid = req.params.id;
     ArticleModel
-    .findById(Articleid, function(err,article){
-        res.json(article);
-    });
-    
-})
+        .findById(Articleid, function (err, article) {
+            res.json(article);
+        });
+
+});
+
+router.delete('/:id', function (req, res) {
+    let Articleid = req.params.id;
+    ArticleModel.remove({ _id: Articleid })
+        .then(function () {
+            res.json({ message: "success" })
+        })
+
+});
 
 // Prepare to treat router as a module
 module.exports = router;
