@@ -39,5 +39,26 @@ router.get('/:id', function (req, res) {
             res.json(user);
         });
 });
+
+router.put('/:id', function (req, res) {
+    let Userid = req.params.id;
+
+    UserModel
+        .findById(Userid, function (err, user) {
+            if (err) {
+                res.send(err);
+            } else {
+                user.name = req.body.name;
+                user.screen_name = req.body.screen_name;
+                user.bio = req.body.bio;
+
+                user.save(function (err) {
+                    if (err) {
+                        res.json({ message: 'Succress!' });
+                    }
+                });
+            }
+        });
+});
 //routerをモジュールとして扱う準備
 module.exports = router;
